@@ -28,7 +28,7 @@
       <img class="picture-item-image" alt="image">
       <div class="caption" style="text-align: center;">
         <button class="btn btn-danger picture-item-delete-button">delete</button>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#largeShoes">update</button>
+        <button type="button" class="btn btn-warning picture-item-update-button" data-toggle="modal" data-target="#largeShoes">update</button>
         <button class="btn btn-info picture-item-get-button">get</button>
       </div>
     </div>
@@ -78,8 +78,8 @@
           <h4 class="modal-title" id="modalLabelLarge">Modal Title</h4>
         </div>
         <div class="modal-body">
-          <input id="picture-url-update" type="text" size="40" class="form-control" placeholder="Insert a picture URL" />
-          <button id="picture-update-button" type="button" class="btn btn-warning" data-toggle="modal" data-target="#largeShoes">update</button>
+          <input id="update-input" type="text" size="40" class="form-control" style="display:inline-block;width: 80%" placeholder="Insert a picture URL" />
+          <button id="update-button" type="button" class="btn btn-warning" style="display:inline-block" data-dismiss="modal">update</button>
         </div>
       </div>
     </div>

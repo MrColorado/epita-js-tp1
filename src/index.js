@@ -13,19 +13,13 @@ const pictureItemTemplate = document.getElementById("picture-item-template");
 const getInputContents = () => pictureInputElement.value;
 const clearInputContents = () => (pictureInputElement.value = "");
 
-/*
-const pictureUpdateElement = document.getElementById("picture-url-update");
-const pictureUpdateButtonElement = document.getElementById("picture-update-button");
 
-const updateInputContents = () => pictureInputElement.value;
-const clearUpdateInputContents = () => (pictureInputElement.value = "");
+const pictureUpdateElement = document.getElementById("update-input");
+const pictureUpdateButtonElement = document.getElementById("update-button");
 
-const updatePictureHandler = () => {
-  const url = updateInputContents();
-  clearUpdateInputContents();
-  return url;
-};
-*/
+const updateInputContents = () => pictureUpdateElement.value;
+const clearUpdateInputContents = () => (pictureUpdateElement.value = "");
+
 
 const refreshGrid = () => {
   const items = [...list()];
@@ -52,17 +46,21 @@ const refreshGrid = () => {
 
     /*------------------------------------------------------------------------*/
 
-    /*
     const updateButtonElement = clone.querySelector(
       ".picture-item-update-button"
     );
 
-    updateButtonElement.addEventListener("click", () => {
-      //const newUrl = updatePictureHandler();
-      update(i);
-      refreshGrid();
+    updateButtonElement.addEventListener("click", async () => {
+
+      clearUpdateInputContents();
+      const updatePictureHandler = () => {
+        const url = updateInputContents().trim();
+        update(i, url);
+        refreshGrid();
+      };
+
+      pictureUpdateButtonElement.addEventListener("click", () => updatePictureHandler())
     });
-    */
 
     /*------------------------------------------------------------------------*/
 
@@ -72,7 +70,6 @@ const refreshGrid = () => {
 
     getButtonElement.addEventListener("click", () => {
       const url = get(i);
-      console.log(url);
       if (url) {
         window.open(get(i), 'Download');
       }
@@ -88,13 +85,9 @@ const refreshGrid = () => {
 };
 
 const addPictureHandler = () => {
-  const url = getInputContents();
-
-  add(url);
+  const url = getInputContents().trim();
+  add(url.trim());
   refreshGrid();
-
-  // FIXME: bonus, trim eventual whitespaces and validate content
-
   clearInputContents();
 };
 
