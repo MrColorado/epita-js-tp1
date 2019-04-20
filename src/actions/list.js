@@ -7,6 +7,10 @@
 *
 */
 
-const list = () => {};
+import { getState } from '../store'
+
+const list = () => {
+  return getState()
+};
 
 export default list;

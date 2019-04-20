@@ -8,6 +8,15 @@
 *
 */
 
-const update = () => {};
+import { getState, setState } from '../store'
+
+const update = (element, newElement) => {
+  const state = getState();
+  const position = state.indexOf(element);
+  if (position !== -1) {
+    state[position] = newElement;
+    setState(state);
+  }
+};
 
 export default update;

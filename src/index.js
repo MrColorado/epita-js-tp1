@@ -1,5 +1,8 @@
 import list from "./actions/list";
 import add from "./actions/add";
+import remove from "./actions/remove";
+import update from "./actions/update";
+import get from "./actions/get";
 
 const picturesGridElement = document.getElementById("pictures-grid");
 const pictureInputElement = document.getElementById("picture-url-input");
@@ -10,18 +13,22 @@ const pictureItemTemplate = document.getElementById("picture-item-template");
 const getInputContents = () => pictureInputElement.value;
 const clearInputContents = () => (pictureInputElement.value = "");
 
-const addPictureHandler = () => {
-  const url = getInputContents();
+/*
+const pictureUpdateElement = document.getElementById("picture-url-update");
+const pictureUpdateButtonElement = document.getElementById("picture-update-button");
 
-  // FIXME: use your actions functions to add a new picture
-  // FIXME: bonus, trim eventual whitespaces and validate content
+const updateInputContents = () => pictureInputElement.value;
+const clearUpdateInputContents = () => (pictureInputElement.value = "");
 
-  clearInputContents();
+const updatePictureHandler = () => {
+  const url = updateInputContents();
+  clearUpdateInputContents();
+  return url;
 };
+*/
 
 const refreshGrid = () => {
-  // FIXME: use your functions to get all the elements
-  const items = [];
+  const items = [...list()];
 
   const fragment = document.createDocumentFragment();
 
@@ -30,15 +37,48 @@ const refreshGrid = () => {
 
     const imgElement = clone.querySelector(".picture-item-image");
 
-    // FIXME: set the URL from your Picture model.
-    imgElement.src = "https://picsum.photos/458/354";
+    imgElement.src = i;
+
+    /*------------------------------------------------------------------------*/
 
     const deleteButtonElement = clone.querySelector(
       ".picture-item-delete-button"
     );
 
-    // FIXME: use your functions to delete the selected element
-    deleteButtonElement.addEventListener("click", () => {});
+    deleteButtonElement.addEventListener("click", () => {
+      remove(i);
+      refreshGrid();
+    });
+
+    /*------------------------------------------------------------------------*/
+
+    /*
+    const updateButtonElement = clone.querySelector(
+      ".picture-item-update-button"
+    );
+
+    updateButtonElement.addEventListener("click", () => {
+      //const newUrl = updatePictureHandler();
+      update(i);
+      refreshGrid();
+    });
+    */
+
+    /*------------------------------------------------------------------------*/
+
+    const getButtonElement = clone.querySelector(
+      ".picture-item-get-button"
+    );
+
+    getButtonElement.addEventListener("click", () => {
+      const url = get(i);
+      console.log(url);
+      if (url) {
+        window.open(get(i), 'Download');
+      }
+    });
+
+    /*------------------------------------------------------------------------*/
 
     fragment.appendChild(clone);
   });
@@ -46,6 +86,18 @@ const refreshGrid = () => {
   picturesGridElement.innerHTML = "";
   picturesGridElement.appendChild(fragment);
 };
+
+const addPictureHandler = () => {
+  const url = getInputContents();
+
+  add(url);
+  refreshGrid();
+
+  // FIXME: bonus, trim eventual whitespaces and validate content
+
+  clearInputContents();
+};
+
 
 refreshGrid();
 

@@ -7,6 +7,12 @@
 *
 */
 
-const get = () => {};
+import { getState } from '../store'
+
+const get = (element) => {
+  const state = getState();
+  const position = state.indexOf(element);
+  return position !== -1 ? state[position] : null
+};
 
 export default get;

@@ -7,6 +7,15 @@
 *
 */
 
-const remove = () => {};
+import { getState, setState } from '../store'
+
+const remove = (element) => {
+  const currentState = getState();
+  const position = currentState.indexOf(element);
+  if (position !== -1) {
+    currentState.splice(position, 1);
+    setState(currentState);
+  }
+};
 
 export default remove;

@@ -5,7 +5,7 @@
   "devDependencies": {
     "autoprefixer": "^6.7.6",
     "babel-core": "^6.23.1",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.3.2",
     "babel-preset-react-app": "^2.1.1",
@@ -54,7 +54,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "lint": "eslint src/**/*.js"
   },
   "jest": {
     "moduleFileExtensions": [
