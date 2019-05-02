@@ -9,12 +9,13 @@
 
 import { getState, setState } from '../store'
 
-const remove = (element) => {
+const remove = (element, dom) => {
   const currentState = getState();
   const position = currentState.indexOf(element);
   if (position !== -1) {
     currentState.splice(position, 1);
     setState(currentState);
+    dom.parentNode.parentNode.removeChild(dom.parentNode)
   }
 };
 

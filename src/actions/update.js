@@ -10,12 +10,13 @@
 
 import { getState, setState } from '../store'
 
-const update = (element, newElement) => {
+const update = (element, newElement, dom) => {
   const state = getState();
   const position = state.indexOf(element);
   if (position !== -1) {
     state[position] = newElement;
     setState(state);
+    dom.parentNode.firstElementChild.setAttribute("src", newElement);
   }
 };
 

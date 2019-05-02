@@ -40,8 +40,7 @@ const refreshGrid = () => {
     );
 
     deleteButtonElement.addEventListener("click", () => {
-      remove(i);
-      refreshGrid();
+      remove(i, imgElement);
     });
 
     /*------------------------------------------------------------------------*/
@@ -55,8 +54,9 @@ const refreshGrid = () => {
       clearUpdateInputContents();
       const updatePictureHandler = () => {
         const url = updateInputContents().trim();
-        update(i, url);
-        refreshGrid();
+        if ("" !== url) {
+          update(i, url, imgElement);
+        }
       };
 
       pictureUpdateButtonElement.addEventListener("click", () => updatePictureHandler())
@@ -86,8 +86,9 @@ const refreshGrid = () => {
 
 const addPictureHandler = () => {
   const url = getInputContents().trim();
-  add(url.trim());
-  refreshGrid();
+  if ("" !== url) {
+    add(url);
+  }
   clearInputContents();
 };
 

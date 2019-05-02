@@ -15,6 +15,10 @@ const add = (element) => {
   const state = getState();
   state.push(element);
   setState(state)
+  const myList = document.getElementById("pictures-grid")
+  const copy = myList.firstElementChild.cloneNode(true);
+  copy.firstElementChild.setAttribute("src", element);
+  myList.appendChild(copy)
 };
 
 export default add;
